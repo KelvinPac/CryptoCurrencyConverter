@@ -1,6 +1,9 @@
 # CryptoCurrencyConverter
 Created for submission as an Intermediate android track assessment for Andela learning community powered by Google
 
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
+
 ### Depedencies Used
 >Please make sure the following dependencies are installed and setup correctly to be able to compile properly
 ```java
@@ -16,25 +19,24 @@ Created for submission as an Intermediate android track assessment for Andela le
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
 ```
-* Nigerian Naira, 
-* Kenya
-* USA
-* Britain
-* China
-* Swiss
-* Euro
-* Gilbraltar
-* Jordan
-* Oman
-* Bahrain
-* Kuwait
-* Japan
-* Canada
-* United Arap Emirates
-* Chile
-* Brazil
-* India
-* Israel
+### Countries and regions with currencies included in the project
+>* Nigeria
+>* Kenya
+>* USA
+>* Britain
+>* China
+>* Swiss
+>* Euro
+>* Gilbraltar
+>* Jordan
+>* Oman
+>* Bahrain
+>* Kuwait
+>* Japan
+>* Canada
+>* United Arap Emirates
+>* Chile
+>* Brazil
+>* India
+>* Israel 
 
-//[Visit GitHub!](www.github.com)
-//![Benjamin Bannekat](https://octodex.github.com/images/bannekat.ypng)
