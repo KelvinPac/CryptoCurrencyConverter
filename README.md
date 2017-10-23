@@ -2,7 +2,7 @@
 Created for submission as an Intermediate android track assessmment for Andela learning community powered by Google
 
 # Depedencies Used
-Please make sure the following dependencies are installed to be able to compile properly
+Please make sure the following dependencies are installed and setup correctly to be able to compile properly
 ```java
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
