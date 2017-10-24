@@ -4,6 +4,8 @@ package com.homeautogroup.cryptocurrencyconverter.model;
  * Created by exodus on 10/20/17.
  */
 
+/*
+* Class required by Retrofit to map data after server response*/
 public class CryptoCompare {
 
     private ETH ETH;

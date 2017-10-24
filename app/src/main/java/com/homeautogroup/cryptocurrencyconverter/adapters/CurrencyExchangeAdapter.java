@@ -1,5 +1,6 @@
 package com.homeautogroup.cryptocurrencyconverter.adapters;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
@@ -24,6 +25,7 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
 
     private Context mContext;
     private List<CurrencyExchange> currencyExchangeList;
+    private int previousPosition =0;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title, count,eth;
@@ -36,22 +38,6 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
             eth = (TextView)view.findViewById(R.id.countEthr);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
-
-            //set a click listener for the whole card view
-           /* view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mContext.startActivity(new Intent(mContext,DetailsActivity.class));
-                }
-            });
-
-            thumbnail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mContext.startActivity(new Intent(mContext,DetailsActivity.class));
-
-                }
-            });*/
         }
     }
 
@@ -101,6 +87,19 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
             }
         });
 
+        if (position>previousPosition){
+            animate(holder,false);
+        }else {
+            previousPosition=position;
+        }
+        animate(holder, true);
+
+    }
+
+    private void animate(MyViewHolder holder, boolean b) {
+        ObjectAnimator animateTranslateY = ObjectAnimator.ofFloat(holder.itemView,"translationY", b==true?100:-100,0);
+        animateTranslateY.setDuration(1000);
+        animateTranslateY.start();
     }
 
     /**

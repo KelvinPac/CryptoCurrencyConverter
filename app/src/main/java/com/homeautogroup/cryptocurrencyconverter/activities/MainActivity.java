@@ -40,15 +40,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CurrencyExchangeAdapter adapter;
     private List<CurrencyExchange> currencyExchangeList;
-    //private ArrayList<ETH> ethList = new ArrayList<>();
-   // private ArrayList<BTC> btcList = new ArrayList<>();
-   // private ArrayList<CryptoCompare> cryptoCompareList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initCollapsingToolbar();
+        //initialize the recyclerview
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-
+        //Fetch the exchange rates for 20 countries from CryptoCompare Api using Retrofit
         fetchLatestExchangeRates();
 
        /* try {
@@ -104,6 +102,61 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    * Fetch latest exchange rates from crptocompare API using retrofit*/
+    private void fetchLatestExchangeRates() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching latest exchange rates");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APIUrl.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        APIService service = retrofit.create(APIService.class);
+
+        Call<CryptoCompare> call = service.getLatestExchangeRates();
+
+        call.enqueue(new Callback<CryptoCompare>() {
+            @Override
+            public void onResponse(@NonNull Call<CryptoCompare> call, @NonNull Response<CryptoCompare> response) {
+                progressDialog.dismiss();
+                /*
+                * All successful responses from crypto compare have a http code 200
+                * Check if http code is 200 then continue
+                * */
+                if (response.code()==200){
+
+
+                    try{
+                        Log.e(TAG,response.body().toString());
+                        //Toast.makeText(MainActivity.this,  response.body().toString(), Toast.LENGTH_SHORT).show();
+
+                        //Get ether and btc objects from the response body
+                        ETH ether = response.body().getETH();
+                        BTC bitcoin = response.body().getBTC();
+
+                        // Log.e(TAG,ether.getEUR()+ " "+ether.getKES()+" "+ether.getUSD());
+
+                        //Prepare RecyclerView data passing the 2 objects as  parameters
+                        prepareExchangeRates(ether,bitcoin);
+
+                    }catch (NullPointerException e){
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CryptoCompare> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     /**
      * Adding few albums for testing
@@ -113,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO add currency short symbol
     private void prepareExchangeRates(ETH ether, BTC bitcoin) {
+
         //Log.e("MainActivity",ether.toString());
         //Toast.makeText(this, ether.toString(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(this, eth1.getKES(), Toast.LENGTH_SHORT).show();
@@ -247,63 +301,11 @@ public class MainActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+
     }
 
 
-    /*
-    * Fetch latest exchange rates from crptocompare API using retrofit*/
-    private void fetchLatestExchangeRates() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching latest exchange rates");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        APIService service = retrofit.create(APIService.class);
 
-        Call<CryptoCompare> call = service.getLatestExchangeRates();
-
-        call.enqueue(new Callback<CryptoCompare>() {
-            @Override
-            public void onResponse(@NonNull Call<CryptoCompare> call, @NonNull Response<CryptoCompare> response) {
-                progressDialog.dismiss();
-                /*
-                * All successful responses from crypto compare have a http code 200
-                * Check if http code is 200 then continue
-                * */
-                if (response.code()==200){
-
-                    try{
-                        Log.e(TAG,response.body().toString());
-                        //Toast.makeText(MainActivity.this,  response.body().toString(), Toast.LENGTH_SHORT).show();
-
-                        //Get ether and btc objects from the response body
-                        ETH ether = response.body().getETH();
-                        BTC bitcoin = response.body().getBTC();
-
-                       // Log.e(TAG,ether.getEUR()+ " "+ether.getKES()+" "+ether.getUSD());
-
-                        //Prepare RecyclerView data passing the 2 objects as  parameters
-                        prepareExchangeRates(ether,bitcoin);
-
-                    }catch (NullPointerException e){
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CryptoCompare> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
 
 }

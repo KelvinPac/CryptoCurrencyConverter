@@ -249,4 +249,8 @@ public class ETH {
     {
         return "ClassPojo [JPY = "+JPY+", CNY = "+CNY+", OMR = "+OMR+", BHD = "+BHD+", NGN = "+NGN+", KWD = "+KWD+", MXN = "+MXN+", JOD = "+JOD+", CAD = "+CAD+", CLP = "+ CLP +", KES = "+KES+", GBP = "+GBP+", ILS = "+ILS+", BRL = "+BRL+", CHF = "+CHF+", EUR = "+EUR+", INR = "+INR+", USD = "+USD+", AED = "+AED+"]";
     }
+
+    public void getValue(String shortCode) {
+
+    }
 }

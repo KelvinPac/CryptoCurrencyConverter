@@ -9,11 +9,15 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        resConfigs "en"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            //To enable code shrinking with ProGuard, add minifyEnabled true
+            minifyEnabled true
+            //Resource shrinking works only in conjunction with code shrinking
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

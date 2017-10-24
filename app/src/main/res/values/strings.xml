@@ -5,4 +5,15 @@
     <string name="action_play_next">Play Next</string>
     <string name="backdrop_title">LOVE MUSIC</string>
     <string name="backdrop_subtitle">This season top 20 albums</string>
+    <string name="convert_btn">  Convert</string>
+    <string name="conversion_answer">Answer</string>
+    <string name="convert_to_bitcoin">Convert to Bitcoin</string>
+    <string name="kes">KES</string>
+    <string name="btc_shortcode">BTC</string>
+    <string name="convert_to_ether">Convert to Ether</string>
+    <string name="eth_shortcode">ETH</string>
+    <string name="btn_viceVersa">VC</string>
+    <string name="exchange_rates">Exchange Rates</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="ether">Ether</string>
 </resources>

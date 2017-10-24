@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,51 +9,55 @@
     tools:showIn="@layout/activity_details">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             app:cardCornerRadius="4dp"
-            app:cardUseCompatPadding="true"
-            android:layout_height="wrap_content">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Exchange Rates"
-                    android:textStyle="bold"
-                   android:layout_margin="10dp"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="@string/exchange_rates"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <Button
-                        android:drawableStart="@drawable/ic_bitcoin"
-                        android:drawableLeft="@drawable/ic_bitcoin"
-                        android:layout_weight="1"
                         android:id="@+id/btnBtcRate"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bitcoin" />
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ic_bitcoin"
+                        android:drawableStart="@drawable/ic_bitcoin"
+                        android:text="@string/bitcoin" />
 
                     <Button
-                        android:drawableStart="@drawable/ethereum"
-                        android:drawableLeft="@drawable/ethereum"
-                        android:layout_weight="1"
                         android:id="@+id/btnEthRate"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ether" />
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/ethereum"
+                        android:drawableStart="@drawable/ethereum"
+                        android:text="@string/ether" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -62,27 +65,28 @@
 
 
         <android.support.v7.widget.CardView
-            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             app:cardCornerRadius="4dp"
-            app:cardUseCompatPadding="true"
-            android:layout_height="wrap_content">
+            app:cardUseCompatPadding="true">
 
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
                 <TextView
-                    android:layout_gravity="center"
                     android:id="@+id/crdBtc_conversionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Convert to Bitcoin"
-                    android:textStyle="bold"
-                    android:layout_margin="10dp"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="@string/convert_to_bitcoin"
+                    android:textStyle="bold" />
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -93,75 +97,81 @@
                         android:id="@+id/crdBtc_currencyShortCode1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KES"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:text="@string/kes" />
 
                     <EditText
                         android:id="@+id/crdBtc_Input"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/input_outline"
                         android:ems="10"
-                        android:inputType="numberDecimal" />
+                        android:focusable="auto"
+                        android:inputType="numberDecimal"
+                        android:selectAllOnFocus="false" />
 
                     <Button
                         android:id="@+id/crdBtc_BtnViceVersa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VC" />
+                        android:drawableTop="@drawable/ic_repeat"
+                        android:text="@string/btn_viceVersa" />
 
                     <TextView
                         android:id="@+id/crdBtc_currencyShortCode2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BTC"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:text="@string/btc_shortcode" />
 
                     <TextView
                         android:id="@+id/crdBtc_conversionAnswer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Answer"
-                        android:gravity="fill"
                         android:layout_columnSpan="2"
+                        android:layout_gravity="start|top"
                         android:layout_rowSpan="2"
-                        android:layout_gravity="start|top"/>
+                        android:gravity="fill"
+                        android:text="@string/conversion_answer" />
 
                 </GridLayout>
 
                 <Button
                     android:id="@+id/crdBtc_ConvertCurrencies"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Convert"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableTop="@drawable/ic_exchange"
+                    android:text="@string/convert_btn" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
-
         <android.support.v7.widget.CardView
-            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             app:cardCornerRadius="4dp"
-            app:cardUseCompatPadding="true"
-            android:layout_height="wrap_content">
+            app:cardUseCompatPadding="true">
 
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
                 <TextView
-                    android:layout_gravity="center"
                     android:id="@+id/crdEth_conversionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Convert to Ether"
-                    android:layout_margin="10dp"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="@string/convert_to_ether"
+                    android:textStyle="bold" />
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -172,52 +182,57 @@
                         android:id="@+id/crdEth_currencyShortCode1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KES"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:text="@string/kes" />
 
                     <EditText
                         android:id="@+id/crdEth_Input"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/input_outline"
                         android:ems="10"
                         android:inputType="numberDecimal" />
 
                     <Button
                         android:id="@+id/crdEth_BtnViceVersa"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VC" />
+                        android:drawableTop="@drawable/ic_repeat"
+                        android:text="@string/btn_viceVersa" />
 
                     <TextView
                         android:id="@+id/crdEth_currencyShortCode2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ETH"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:text="@string/eth_shortcode" />
 
                     <TextView
                         android:id="@+id/crdEth_conversionAnswer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Answer"
-                        android:gravity="fill"
                         android:layout_columnSpan="2"
+                        android:layout_gravity="start|top"
                         android:layout_rowSpan="2"
-                        android:layout_gravity="start|top"/>
+                        android:gravity="fill"
+                        android:text="@string/conversion_answer" />
 
                 </GridLayout>
 
                 <Button
                     android:id="@+id/crdEth_ConvertCurrencies"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Convert"/>
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/ic_exchange"
+                    android:drawableStart="@drawable/ic_exchange"
+                    android:text="@string/convert_btn" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
-
 
 
 </android.support.v4.widget.NestedScrollView>

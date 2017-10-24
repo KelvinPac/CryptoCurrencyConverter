@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:name=".activities.DetailsActivity"
             android:label="@string/title_activity_details"
             android:parentActivityName=".activities.MainActivity"
