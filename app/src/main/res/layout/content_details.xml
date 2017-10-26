@@ -106,11 +106,12 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/input_outline"
                         android:ems="10"
-                        android:focusable="auto"
                         android:inputType="numberDecimal"
-                        android:selectAllOnFocus="false" />
+                        android:padding="10dp"
+                        />
 
                     <Button
+                        style="?android:attr/buttonBarButtonStyle"
                         android:id="@+id/crdBtc_BtnViceVersa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -191,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/input_outline"
                         android:ems="10"
+                        android:padding="10dp"
                         android:inputType="numberDecimal" />
 
                     <Button
