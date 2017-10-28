@@ -16,4 +16,5 @@
     <string name="exchange_rates">Exchange Rates</string>
     <string name="bitcoin">Bitcoin</string>
     <string name="ether">Ether</string>
+    <string name="white">White</string>
 </resources>

@@ -2,7 +2,9 @@ package com.homeautogroup.cryptocurrencyconverter.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,7 +23,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.homeautogroup.cryptocurrencyconverter.R;
 import com.homeautogroup.cryptocurrencyconverter.api.APIService;
@@ -27,8 +30,8 @@ import com.homeautogroup.cryptocurrencyconverter.api.APIUrl;
 import com.homeautogroup.cryptocurrencyconverter.model.BTC;
 import com.homeautogroup.cryptocurrencyconverter.model.CryptoCompare;
 import com.homeautogroup.cryptocurrencyconverter.model.ETH;
+import com.homeautogroup.cryptocurrencyconverter.utils.Constant;
 
-import java.lang.reflect.Method;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +46,12 @@ public class DetailsActivity extends AppCompatActivity {
     String currencyName, bitcoinPrice, etherPrice, shortCode;
     boolean convertBtcInViceVersaMode = false;
     boolean convertEthInViceVersaMode = false;
+    //Theme
+    SharedPreferences app_preferences;
+    int appTheme;
+    int themeColor;
+    int appColor;
+    Constant constant;
     //Buttons showing exchange rates
     private Button showEtherRate, showBtcRate;
     //card view Bitcoin conversion
@@ -57,6 +66,23 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //themes
+        app_preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        appColor = app_preferences.getInt("color", 0);
+        appTheme = app_preferences.getInt("theme", 0);
+        themeColor = appColor;
+        constant.color = appColor;
+
+        if (themeColor == 0){
+            setTheme(Constant.theme);
+        }else if (appTheme == 0){
+            setTheme(Constant.theme);
+        }else{
+            setTheme(appTheme);
+        }
+
+
+
         setContentView(R.layout.activity_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -264,6 +290,7 @@ public class DetailsActivity extends AppCompatActivity {
                 }
                 if (scrollRange + verticalOffset == 0) {
                     collapsingToolbar.setTitle("Currency Exchange Conversion");
+
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbar.setTitle(" ");

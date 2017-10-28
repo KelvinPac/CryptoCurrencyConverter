@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         resConfigs "en"
+        vectorDrawables.useSupportLibrary= true;
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -39,4 +40,7 @@ dependencies {
     //Retrofit
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    //Material theme picker
+    //compile 'com.turki-alkhateeb:materialcolorpicker:1.0.7'
+    compile 'com.android.support:gridlayout-v7:26.0.0-alpha1'
 }

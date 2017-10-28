@@ -1,8 +1,10 @@
 package com.homeautogroup.cryptocurrencyconverter.activities;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,8 +13,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,10 +25,15 @@ import com.homeautogroup.cryptocurrencyconverter.R;
 import com.homeautogroup.cryptocurrencyconverter.adapters.CurrencyExchangeAdapter;
 import com.homeautogroup.cryptocurrencyconverter.api.APIService;
 import com.homeautogroup.cryptocurrencyconverter.api.APIUrl;
+import com.homeautogroup.cryptocurrencyconverter.materialcolorpicker.ColorChooserDialog;
+import com.homeautogroup.cryptocurrencyconverter.materialcolorpicker.ColorListener;
 import com.homeautogroup.cryptocurrencyconverter.model.CurrencyExchange;
 import com.homeautogroup.cryptocurrencyconverter.model.BTC;
 import com.homeautogroup.cryptocurrencyconverter.model.CryptoCompare;
 import com.homeautogroup.cryptocurrencyconverter.model.ETH;
+import com.homeautogroup.cryptocurrencyconverter.utils.Constant;
+import com.homeautogroup.cryptocurrencyconverter.utils.Theme;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +47,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    //Theme
+    SharedPreferences sharedPreferences, app_preferences;
+    SharedPreferences.Editor editor;
+    Theme theme;
+    int appTheme;
+    int themeColor;
+    int appColor;
+    Constant constant;
     private RecyclerView recyclerView;
     private CurrencyExchangeAdapter adapter;
     private List<CurrencyExchange> currencyExchangeList;
@@ -44,7 +62,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //themes
+        app_preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        appColor = app_preferences.getInt("color", 0);
+        appTheme = app_preferences.getInt("theme", 0);
+        themeColor = appColor;
+        constant.color = appColor;
+
+        if (themeColor == 0){
+            setTheme(Constant.theme);
+        }else if (appTheme == 0){
+            setTheme(Constant.theme);
+        }else{
+            setTheme(appTheme);
+        }
+
+        //setTheme(R.style.AppTheme_darpink);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+
+
+        //initialize variables  and object needed for new theme
+        theme = new Theme();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+
+       // colorize();
+
         initCollapsingToolbar();
         //initialize the recyclerview
 
@@ -256,6 +301,51 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.action_theme){
+            ColorChooserDialog dialog = new ColorChooserDialog(MainActivity.this);
+            dialog.setTitle("Select");
+            dialog.setColorListener(new ColorListener() {
+                @Override
+                public void OnColorClick(View v, int color) {
+                   // colorize();
+                    Constant.color = color;
+
+                    theme.setColorTheme();
+                    editor.putInt("color", color);
+                    editor.putInt("theme",Constant.theme);
+                    editor.commit();
+                   // Toast.makeText(MainActivity.this,"Changes to be shown on next restart",Toast.LENGTH_SHORT).show();
+
+                    recreate();
+                }
+            });
+
+            dialog.show();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -294,17 +384,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-
-    }
-
-
 
 
 
