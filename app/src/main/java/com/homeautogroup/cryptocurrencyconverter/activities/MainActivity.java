@@ -35,6 +35,7 @@ import com.homeautogroup.cryptocurrencyconverter.utils.Constant;
 import com.homeautogroup.cryptocurrencyconverter.utils.Theme;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private CurrencyExchangeAdapter adapter;
     private List<CurrencyExchange> currencyExchangeList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             setTheme(appTheme);
         }
 
-        //setTheme(R.style.AppTheme_darpink);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    * Fetch latest exchange rates from crptocompare API using retrofit*/
+    * Fetch latest exchange rates from cryptocompare API using retrofit*/
     private void fetchLatestExchangeRates() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching latest exchange rates");
@@ -164,8 +165,9 @@ public class MainActivity extends AppCompatActivity {
         Call<CryptoCompare> call = service.getLatestExchangeRates();
 
         call.enqueue(new Callback<CryptoCompare>() {
+            @SuppressWarnings("ConstantConditions")
             @Override
-            public void onResponse(@NonNull Call<CryptoCompare> call, @NonNull Response<CryptoCompare> response) {
+            public void onResponse(Call<CryptoCompare> call, Response<CryptoCompare> response) {
                 progressDialog.dismiss();
                 /*
                 * All successful responses from crypto compare have a http code 200
@@ -205,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Adding few albums for testing
-     * @param ether
+     * @param ether description
      * @param bitcoin
      */
 
@@ -322,6 +324,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.action_theme){
+            // TODO: 10/28/17 remove material color picker and its components completely in favour of  spectrum library
             ColorChooserDialog dialog = new ColorChooserDialog(MainActivity.this);
             dialog.setTitle("Select");
             dialog.setColorListener(new ColorListener() {

@@ -20,9 +20,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.homeautogroup.cryptocurrencyconverter.R;
 import com.homeautogroup.cryptocurrencyconverter.api.APIService;
@@ -62,6 +64,9 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView cardEthTitle, cardEthCurrencyShortCode1, cardEthCurrencyShortCode2, cardEthConversionAnswer;
     private EditText cardEthInput;
     private Button cardEthViceVersa, cardEthConvertCurrencies;
+
+    //ImageView
+    private ImageView imageViewThumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +109,8 @@ public class DetailsActivity extends AppCompatActivity {
         //initialize views
         showEtherRate = (Button) findViewById(R.id.btnEthRate);
         showBtcRate = (Button) findViewById(R.id.btnBtcRate);
+        imageViewThumb = (ImageView) findViewById(R.id.imageViewThumb);
+
 
 
         //initialize the BTC card view views
@@ -141,6 +148,9 @@ public class DetailsActivity extends AppCompatActivity {
             //Set the currency shortcodes to the view
             cardBtcCurrencyShortCode1.setText(shortCode);
             cardEthCurrencyShortCode1.setText(shortCode);
+
+            // loading currencyExchange cover using Glide library
+            Glide.with(this).load(thumbnail).into(imageViewThumb);
 
         }
         //intent data was not received
@@ -352,7 +362,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<CryptoCompare>() {
             @Override
-            public void onResponse(@NonNull Call<CryptoCompare> call, @NonNull Response<CryptoCompare> response) {
+            public void onResponse(Call<CryptoCompare> call, Response<CryptoCompare> response) {
                 progressDialog.dismiss();
 
                 /*

@@ -33,6 +33,15 @@
                     android:text="@string/exchange_rates"
                     android:textStyle="bold" />
 
+                <ImageView
+                    android:id="@+id/imageViewThumb"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/kenya" />
+
+
                 <LinearLayout
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="match_parent"
@@ -111,8 +120,8 @@
                         />
 
                     <Button
-                        style="?android:attr/buttonBarButtonStyle"
                         android:id="@+id/crdBtc_BtnViceVersa"
+                        style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/ic_repeat"
@@ -133,7 +142,8 @@
                         android:layout_gravity="start|top"
                         android:layout_rowSpan="2"
                         android:gravity="fill"
-                        android:text="@string/conversion_answer" />
+                        android:text="@string/conversion_answer"
+                        android:textStyle="bold" />
 
                 </GridLayout>
 
@@ -192,8 +202,8 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/input_outline"
                         android:ems="10"
-                        android:padding="10dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:padding="10dp" />
 
                     <Button
                         android:id="@+id/crdEth_BtnViceVersa"
@@ -218,7 +228,8 @@
                         android:layout_gravity="start|top"
                         android:layout_rowSpan="2"
                         android:gravity="fill"
-                        android:text="@string/conversion_answer" />
+                        android:text="@string/conversion_answer"
+                        android:textStyle="bold" />
 
                 </GridLayout>
 
@@ -228,8 +239,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_exchange"
-                    android:drawableStart="@drawable/ic_exchange"
+                    android:drawableTop="@drawable/ic_exchange"
                     android:text="@string/convert_btn" />
 
             </LinearLayout>

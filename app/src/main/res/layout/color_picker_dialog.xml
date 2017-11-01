@@ -94,7 +94,8 @@
             android:background="@drawable/dialog_button"
             android:minHeight="36dp"
             android:padding="8dp"
-            android:text="@string/white" />
+            android:text="@string/white"
+            android:visibility="gone" />
     </LinearLayout>
 
 </ScrollView>
