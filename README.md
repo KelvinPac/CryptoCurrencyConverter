@@ -1,5 +1,25 @@
 # CryptoCurrencyConverter
-Created for submission as an Intermediate android track assessment for Andela learning community powered by Google
+## Created for submission as an Intermediate android track assessment for Andela learning community powered by Google
+
+<p align="center">
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172524.png" width="350"/>
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172551.png" width="350"/>
+</p>
+
+
+<p align="center">
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172600.png" width="350"/>
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172617.png" width="350"/>
+</p>
+
+
+<p align="center">
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172633.png" width="350"/>
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172652.png" width="350"/>
+</p>
+<p align="center">
+  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172737.png" width="350"/>
+</p>
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
@@ -7,12 +27,13 @@ These instructions will get you a copy of the project up and running on your loc
 ### Depedencies Used
 >Please make sure the following dependencies are installed and setup correctly to be able to compile properly
 ```java
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
+    compile 'com.android.support:gridlayout-v7:26.0.0-alpha1'
     // Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //Retrofit
