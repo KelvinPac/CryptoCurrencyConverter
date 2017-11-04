@@ -27,21 +27,6 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
     private List<CurrencyExchange> currencyExchangeList;
     private int previousPosition =0;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title, count,eth;
-        ImageView thumbnail, overflow;
-
-        public MyViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            count = (TextView) view.findViewById(R.id.count);
-            eth = (TextView)view.findViewById(R.id.countEthr);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
-        }
-    }
-
-
     public CurrencyExchangeAdapter(Context mContext, List<CurrencyExchange> currencyExchangeList) {
         this.mContext = mContext;
         this.currencyExchangeList = currencyExchangeList;
@@ -65,12 +50,12 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
         // loading currencyExchange cover using Glide library
         Glide.with(mContext).load(currencyExchange.getThumbnail()).into(holder.thumbnail);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
             }
-        });
+        });*/
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -102,43 +87,22 @@ public class CurrencyExchangeAdapter extends RecyclerView.Adapter<CurrencyExchan
         animateTranslateY.start();
     }
 
-    /**
-     * Showing popup menu when tapping on 3 dots
-     */
-    private void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_album, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }
-
-    /**
-     * Click listener for popup menu items
-     */
-    private class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        MyMenuItemClickListener() {
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                    return true;
-                default:
-            }
-            return false;
-        }
-    }
-
     @Override
     public int getItemCount() {
         return currencyExchangeList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView title, count, eth;
+        ImageView thumbnail, overflow;
+
+        public MyViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.title);
+            count = (TextView) view.findViewById(R.id.count);
+            eth = (TextView) view.findViewById(R.id.countEthr);
+            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+            //overflow = (ImageView) view.findViewById(R.id.overflow);
+        }
     }
 }
